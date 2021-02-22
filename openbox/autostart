@@ -1,0 +1,5 @@
+nitrogen --restore &
+picom -f &
+tint2 -c ~/.config/tint2/livia/livia.tint2rc &
+pa-applet &
+nm-applet &
