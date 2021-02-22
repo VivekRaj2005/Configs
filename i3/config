@@ -1,0 +1,183 @@
+# File : I3 Config
+# Config Version : v4
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+# My Modkey is the Super(Windows) Key
+set $mod Mod4
+
+# Screen Lock
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Applets
+exec --no-startup-id nm-applet
+exec pa-applet
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# App Launch Keys
+bindsym $mod+Return exec st # Terminal (st)
+bindsym $mod+w exec brave # Web Browser(Brave)
+bindsym $mod+s exec spotify # Music Player (Spotify)
+
+# Kill
+bindsym $mod+Shift+q kill
+
+# Rofi
+# bindsym $mod+d  exec rofi -show run -theme ~/.config/rofi/authur.rasi
+
+# Dmenu
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# Focus Change
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# Alternative : Focus Change
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move Window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# Alternative : Move Window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Horzontal Split
+bindsym $mod+h split h
+
+# Vertical Split
+bindsym $mod+v split v
+
+# Full Screen
+bindsym $mod+f fullscreen toggle
+
+# Container Change
+bindsym $mod+e layout toggle split
+
+# Toggling Tile Functionality
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Workspace Names
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switching To Workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Moving a Window to another workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace 
+bindsym $mod+Shift+r restart
+
+# Exit Mode
+mode "exit" {
+	# Logout 
+	bindsym $mod+l exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes' 'i3-msg exit'"
+
+	# Poweroff
+	bindsym $mod+p exec "i3-nagbar -t warning -m 'Poweroff' -B 'Yes' 'poweroff'"
+	
+	# Lock
+	bindsym $mod+o exec i3lock
+
+	# Exit Mode
+	bindsym Return mode "default"
+        bindsym Escape mode "default"
+	bindym $mod+Shift+e mode "default"
+
+}
+bindsym $mod+Shift+e mode "exit"
+
+# Resize Mode
+mode "resize" {
+
+	# Key Code 1        
+	bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # Key Code 2
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # Exiting Mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Window Border
+for_window [class="^.*"] border pixel 2 
+gaps inner 5
+gaps outer 5
+
+# Workspaces
+for_window [class="Brave-browser"] move to workspace $ws3
+for_window [class="firefox"] move to workspace $ws4
+for_window [class="Spotify"] move to workspace $ws5
+
+# Autostart
+exec nitrogen --restore
+exec picom -f
+exec tint2 -c ~/.config/tint2/livia/livia.tint2rc
