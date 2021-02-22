@@ -15,5 +15,3 @@ Included Window managers are
 - st (Terminal)
 - i3lock (Locksreen for i3)
 - archlinux-wallpaper (Wallpaper Pack)
-
-### Please note you have to theme the components yourself
