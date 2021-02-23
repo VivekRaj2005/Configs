@@ -14,4 +14,3 @@ Included Window managers are
 - nitrogen (For Wallpaper)
 - st (Terminal)
 - i3lock (Locksreen for i3)
-- archlinux-wallpaper (Wallpaper Pack)
