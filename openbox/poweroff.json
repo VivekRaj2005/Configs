@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Lock screen",
+    "exec": "/home/vivek/.local/bin/lock",
+    "icon": "system-lock-screen"
+  },
+  {
+    "name": "Logout",
+    "exec": "openbox --exit",
+    "icon": "system-log-out"
+  },
+  {
+      "name": "Sleep",
+      "exec": "/home/vivek/.local/bin/suspend",
+      "icon": "sleep"
+  },
+  {
+      "name": "Hibernate",
+      "exec": "systemctl hibernate",
+      "icon": "system-suspend-hibernate"
+  },
+  {
+    "name": "Reboot",
+    "exec": "reboot",
+    "icon": "system-reboot"
+  },
+  {
+    "name": "Shutdown",
+    "exec": "poweroff",
+    "icon": "system-shutdown"
+  }
+]
+
