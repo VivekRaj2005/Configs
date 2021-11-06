@@ -1,0 +1,99 @@
+env:
+  # TERM variable
+  TERM: xterm-256color
+
+window:
+  # Window padding
+  padding:
+    x: 7
+    y: 5
+  # Window title
+  title: Alacritty
+
+  # Window class:
+  class:
+    # Application instance name
+    instance: Alacritty
+    # General application class
+    general: Alacritty
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  history: 5000
+
+# Font configuration
+font:
+  # Normal font face
+  normal:
+    family: UbuntuMono
+    style: Regular
+
+  # Bold font face
+  bold:
+    family: UbuntuMono
+    style: Bold
+
+  # Italic font face
+  italic:
+    family: UbuntuMono
+    style: Italic
+
+
+  # Bold italic font face
+  bold_italic:
+   family: UbuntuMono
+   style: Bold Italic
+
+  # Size
+  size: 9.0
+
+  # Charecter Offset.
+  offset:
+    x: 0
+    y: 1
+
+# Bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors: true
+
+colors:
+  # Default colors
+  primary:
+    background: '0x000000'
+    foreground: '0xffffff'
+  cursor:
+    text: '0xF81CE5'
+    cursor: '0xffffff'
+
+  # Normal colors
+  normal:
+    black:   '0x000000'
+    red:     '0xfe0100'
+    green:   '0x33ff00'
+    yellow:  '0xfeff00'
+    blue:    '0x0066ff'
+    magenta: '0xcc00ff'
+    cyan:    '0x00ffff'
+    white:   '0xd0d0d0'
+
+  # Bright colors
+  bright:
+    black:   '0x808080'
+    red:     '0xfe0100'
+    green:   '0x33ff00'
+    yellow:  '0xfeff00'
+    blue:    '0x0066ff'
+    magenta: '0xcc00ff'
+    cyan:    '0x00ffff'
+    white:   '0xFFFFFF'
+
+# Background opacity
+background_opacity: 0.8
+
+# Key Bindings
+key_bindings:
+  - { key: V,        mods: Control|Shift, action: Paste                         }
+  - { key: C,        mods: Control|Shift, action: Copy                          }
+  - { key: PageUp,    mods: None,          action: ScrollPageUp,   mode: ~Alt   }
+  - { key: PageDown,  mods: None,          action: ScrollPageDown, mode: ~Alt   }
+  - { key: Home,      mods: Shift,         action: ScrollToTop,    mode: ~Alt   }
+  - { key: End,       mods: Shift,         action: ScrollToBottom, mode: ~Alt   }
