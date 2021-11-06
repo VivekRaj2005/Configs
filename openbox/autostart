@@ -1,5 +1,8 @@
 nitrogen --restore &
-picom -f &
-tint2 -c ~/.config/tint2/livia/livia.tint2rc &
-pa-applet &
-nm-applet &
+picom --experimental-backends -f  &
+tint2 &
+pa-applet --disable-notifications &
+cbatticon --hide-notification &
+lxpolkit &
+emacs --daemon &
+redshift -P -O 2500 &
