@@ -1,0 +1,38 @@
+#!/bin/bash
+
+json=$(cat ${1})
+
+if [ $# -eq 1 ]; then
+  echo $json | jq -cr '.[] | "\(.name)|\(.command)|\(.icon)"' |
+  while IFS="|" read -r name command icon
+  do
+    if [[ $name == "null" ]]; then
+      continue
+    fi        
+    if [[ $icon == "null" ]]; then
+      icon="system-run"
+    fi      
+    echo -en "${name}\0icon\x1f${icon}\n"
+  done  
+  exit 1
+fi
+
+if [ $# -eq 2 ]; then
+
+  selected=$2
+  task=$(echo $json | jq ".[] | select(.name == \"$selected\")")
+
+  if [[ $task == "" ]]; then
+    exit 1
+  fi
+
+  command=$(echo $task | jq -j ".command")
+
+  if [[ $command == "null" ]]; then
+    command=$(echo $task | jq -j ".name")
+  fi
+
+  coproc bash -c "$command"
+  exit
+
+fi
